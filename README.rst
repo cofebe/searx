@@ -10,6 +10,15 @@
 
 ----
 
+Set up guide: 
+follow searxng's set up guide: https://docs.searxng.org/admin/installation-searxng.html
+
+BUT when you get to git clone step, replace:
+"https://github.com/searxng/searxng" "/usr/local/searx/searx-src"
+with
+"git@github.com:cofebe/searx.git" "/usr/local/searx/searx-src"
+
+
 Privacy-respecting, hackable `metasearch engine`_
 
 If you are looking for running instances, ready to use, then visit searx.space_.
