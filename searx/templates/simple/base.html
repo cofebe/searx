@@ -27,11 +27,16 @@
   <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" sizes="any">
   <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
 </head>
-<<<<<<< Updated upstream
-<body class="{{ endpoint }}_endpoint" style="background: url(https://www.securitymagazine.com/ext/resources/images/cyber-security-freepik-111.jpg?1624888524); background-size: cover">
-=======
-<body class="{{ endpoint }}_endpoint" style="background: url(../../static/themes/simple/img/searchPageBackground.png); background-position: center; height: fit-content">
->>>>>>> Stashed changes
+	<script>
+		window.onload = function(){
+			if (window.location.pathname == "/"){
+				document.body.style.background ="url(../../static/themes/simple/img/searchPageBackground.png)";
+			} else {
+				document.body.style.background = "white";
+			}
+		}
+	</script>
+<body id="baseBackground" class="{{ endpoint }}_endpoint" style="background-position: center; height: fit-content">
   <main id="main_{{  self._TemplateReference__context.name|replace("simple/", "")|replace(".html", "") }}" class="{{body_class}}">
     {% if errors %}
         <div class="dialog-error" role="alert">
@@ -60,20 +65,14 @@
     </nav>
     {% block header %}
     {% endblock %}
+    <div style="display:flex; flex-direction:column; justify-content: center; align-items:center"> 
+      <img src="../../static/themes/simple/img/poweredByVGI.png" alt="STEALTH Logo" style="height:auto; width:30rem; position: relative; bottom:-12rem">
+    </div>
     {% block content %}
     {% endblock %}
-<<<<<<< Updated upstream
-    <div style="display:flex; justify-content: center; color: white; margin-top: 8rem; text-align: center">
-    	<p style="font-size:1.7rem; font-family: Arial Black;">
-    	  Presented by
-	  <br><strong>Viollis GroupInternational</strong>
-    	  <br> www.viollis.com
-	</p>
-=======
     <div style="display:flex; flex-direction:column; justify-content: center; align-items:center"> 
       <img src="../../static/themes/simple/img/STEALTHLogo.png" alt="STEALTH Logo" style="height:auto; width:30rem; position: relative; bottom:-12rem">
-      <img src="../../static/themes/simple/img/poweredByVGI.png" alt="STEALTH Logo" style="height:auto; width:30rem">
->>>>>>> Stashed changes
+      <img src="../../static/themes/simple/img/poweredByVGI.png" alt="Powered By VGI" style="height:auto; width:30rem">
     </div>
   </main>
     <footer style="visibility: hidden">
