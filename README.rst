@@ -11,12 +11,101 @@
 ----
 
 Set up guide: 
-follow searxng's set up guide: https://docs.searxng.org/admin/installation-searxng.html
+Based on default set up steps:
+https://docs.searxng.org/admin/installation-searxng.html
+(the only difference is the clone step, eg. 3.b)
 
-BUT when you get to git clone step, replace:
-"https://github.com/searxng/searxng" 
-with
-"git@github.com:cofebe/searx.git"
+These steps were performed on Ubuntu 20.04
+
+
+1. Install packages:
+
+a. $ sudo -H apt-get install -y \
+    python3-dev python3-babel python3-venv \
+    uwsgi uwsgi-plugin-python3 \
+    git build-essential libxslt-dev zlib1g-dev libffi-dev libssl-dev
+
+
+
+2. Create User:
+
+a. $ sudo -H useradd --shell /bin/bash --system \
+    --home-dir "/usr/local/searxng" \
+    --comment 'Privacy-respecting metasearch engine' \
+    searxng
+	
+b. $ sudo -H mkdir "/usr/local/searxng"
+
+c. $ sudo -H chown -R "searxng:searxng" "/usr/local/searxng"
+
+
+
+3. Install SearXNG
+
+a. $ sudo -H -u searxng -i
+
+b. (searxng)$ git clone "https://github.com/cofebe/searx.git" \
+                   "/usr/local/searxng/searxng-src"
+
+c. (searxng)$ python3 -m venv "/usr/local/searxng/searx-pyenv"
+
+d. (searxng)$ echo ". /usr/local/searxng/searx-pyenv/bin/activate" \
+                   >>  "/usr/local/searxng/.profile
+				   
+
+4. Install SearXNG Dependencies
+
+a. exit the SearXNG bash session you opened above and start a new one
+
+b. $ sudo -H -u searxng -i
+
+c. (searxng)$ command -v python && python --version
+
+#you should see
+/usr/local/searxng/searx-pyenv/bin/python
+Python 3.8.10
+
+d. (searxng)$ pip install -U pip
+e. (searxng)$ pip install -U setuptools
+f. (searxng)$ pip install -U wheel
+g. (searxng)$ pip install -U pyyaml
+
+h. (searxng)$ cd "/usr/local/searxng/searxng-src"
+i. (searxng)$ pip install -e .
+
+
+
+5. Configuration:
+
+a. Open a second terminal for the configuration tasks and leave the (searx)$ terminal open for step 6
+
+b. $ sudo -H mkdir -p "/etc/searxng
+
+c. $ sudo -H cp "/usr/local/searxng/searxng-src/utils/templates/etc/searxng/settings.yml" \
+             "/etc/searxng/settings.yml"
+
+c. edit /etc/searxng/settings.yml and replace "ultrasecretkey" with a password of your choosing.
+	eg: $ sudo vim /etc/searxng/settings.yml
+
+
+
+6. Launch App:
+
+a. return to previous terminal, or open a new one and follow steps a.1-a.2
+a.1 $ sudo -H -u searxng -i
+a.2 (searxng)$ cd /usr/local/searxng/searxng-src
+
+b. (searxng)$ export SEARXNG_SETTINGS_PATH="/etc/searxng/settings.yml"
+
+c. (searxng)$ python searx/webapp.py
+
+d. open a browser and navigate to http://127.0.0.1:8888
+
+e. celebrate
+
+
+
+
 
 
 Privacy-respecting, hackable `metasearch engine`_
