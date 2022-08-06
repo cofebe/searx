@@ -30,13 +30,18 @@
 	<script>
 		window.onload = function(){
 			if (window.location.pathname == "/"){
-				document.body.style.background ="url(../../static/themes/simple/img/searchPageBackground.png)";
+				document.body.style="background: url(../../static/themes/simple/img/searchPageBackgroundCentered.png); background-size: cover; background-repeat: no-repeat; background-position: center center; height: auto"
+				//document.body.style.background ="url(../../static/themes/simple/img/searchPageBackgroundCentered.png)";
+				//document.body.style.background-size="cover";
+				//document.body.style.background-repeat="no-repeat";
+				//document.body.style.background-position="center center";
+				//document.body.style.height="auto";
 			} else {
 				document.body.style.background = "white";
 			}
 		}
 	</script>
-<body id="baseBackground" class="{{ endpoint }}_endpoint" style="background-position: center; height: fit-content">
+<body id="baseBackground" class="{{ endpoint }}_endpoint" style=" background-size: cover; background-repeat: no-repeat; background-position: center center; height: auto">
   <main id="main_{{  self._TemplateReference__context.name|replace("simple/", "")|replace(".html", "") }}" class="{{body_class}}">
     {% if errors %}
         <div class="dialog-error" role="alert">
