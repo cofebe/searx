@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="HandheldFriendly" content="True">
   <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-  <title >{% block title %}{% endblock %}{{ instance_name }}</title>
+  <title >Viollis Stealth</title>
   {% block meta %}{% endblock %}
   {% if rtl %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/searxng-rtl.min.css') }}" type="text/css" media="screen" />
@@ -30,13 +30,13 @@
 	<script>
 		window.onload = function(){
 			if (window.location.pathname == "/"){
-				document.body.style="background: url(../../static/themes/simple/img/searchPageBackgroundCentered.png); background-size: cover; background-repeat: no-repeat; background-position: center center; height: auto"
+				document.body.style.backgroundImage ="url(../../static/themes/simple/img/searchPageBackground.png)";
 			} else {
 				document.body.style.background = "white";
 			}
 		}
 	</script>
-<body id="baseBackground" class="{{ endpoint }}_endpoint" style=" background-size: cover; background-repeat: no-repeat; background-position: center center; height: auto">
+<body id="baseBackground" class="{{ endpoint }}_endpoint" style="background-position: center; height: fit-content; background-size: 100% 100%;">
   <main id="main_{{  self._TemplateReference__context.name|replace("simple/", "")|replace(".html", "") }}" class="{{body_class}}">
     {% if errors %}
         <div class="dialog-error" role="alert">
@@ -70,10 +70,6 @@
     </div>
     {% block content %}
     {% endblock %}
-    <div style="display:flex; flex-direction:column; justify-content: center; align-items:center"> 
-      <img src="../../static/themes/simple/img/STEALTHLogo.png" alt="STEALTH Logo" style="height:auto; width:30rem; position: relative; bottom:-12rem">
-      <img src="../../static/themes/simple/img/poweredByVGI.png" alt="Powered By VGI" style="height:auto; width:30rem">
-    </div>
   </main>
     <footer style="visibility: hidden">
     <p>
