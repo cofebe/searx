@@ -25,18 +25,63 @@
   <link title="{{ instance_name }}" type="application/opensearchdescription+xml" rel="search" href="{{ opensearch_url }}"/>
   {% endblock %}
   <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" sizes="any">
+
+	<style>
+	  @media screen and (max-width: 500px) {
+	    #search_header {
+	      display:flex;
+	      justify-content:center;
+	    }
+	    #search_view {
+	      margin-right: 0;
+	      width: 100vw;
+	      margin-top: 8rem;
+	    }
+	  @media screen and (min-width: 501px) {
+	    #search_view {
+	      margin-right: 5rem;
+	      margin-top:25rem;
+	    }
+	    #search_view:focus-within {
+	      height: 0;
+	    }
+	    #clear_search {
+	      margin: 1rem 0.5rem;
+	    }
+	    .search_box {
+	      margin-top: 9rem;
+	      margin-right: 4rem;
+	    }
+	  }
+	  .search_box {
+	    margin-top: 43rem;
+	    margin-right: 4rem;
+	  }
+	</style>
 </head>
 	<script>
 		window.onload = function(){
 			if (window.location.pathname == "/"){
-				document.body.style.backgroundImage ="url(../../static/themes/simple/img/searchPageBackground.png)";
+				if (screen.width > 500) {
+                                        document.body.style.backgroundImage ="url(../../static/themes/simple/img/searchPageBackground.png)";
+					document.getElementById("VGILogo").style.visibility="hidden";
+                                } else {
+                                        document.body.style.backgroundImage ="url(../../static/themes/simple/img/mobileSearchPageBackground.png)";
+					document.getElementById("VGILogo").style.visibility="visible";
+					document.getElementById("VGILogo").style.marginTop="8rem";
+					document.getElementById("search_header").style.display="flex";
+					document.getElementById("search_header").style.justifyContent="center";
+					document.getElementById("search_view").style.marginRight="0";
+					document.getElementById("search_view").style.width="90vw";
+					document.getElementById("q").placeholder="";
+                                }	
 			} else {
 				document.body.style.background = "white";
 			}
 		}
 	</script>
 <body id="baseBackground" class="{{ endpoint }}_endpoint" style="background-position: center; height: 100vh; background-size: 100% 100%;">
-  <main id="main_{{  self._TemplateReference__context.name|replace("simple/", "")|replace(".html", "") }}" class="{{body_class}}">
+  <main id="main_{{  self._TemplateReference__context.name|replace("simple/", "")|replace(".html", "") }}" class="{{body_class}}" style="position: relative;">
     {% if errors %}
         <div class="dialog-error" role="alert">
             <a href="#" class="close" aria-label="close" title="close">×</a>
@@ -64,8 +109,8 @@
     </nav>
     {% block header %}
     {% endblock %}
-    <div style="display:flex; flex-direction:column; justify-content: center; align-items:center"> 
-      <img src="../../static/themes/simple/img/VGILogo.png" alt="VGI Logo" style="height:auto; width:30rem; position: relative; margin-top: -20rem; margin-bottom: -16rem">
+    <div id="VGILogo" style="visibility: hidden; display:flex; flex-direction:column; justify-content: center; align-items:center"> 
+      <img src="../../static/themes/simple/img/VGILogo.png" alt="VGI Logo" style="height:auto; width:380px; position: relative; margin-top: -12rem;">
     </div>
     {% block content %}
     {% endblock %}
