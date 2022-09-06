@@ -25,18 +25,29 @@
   <link title="{{ instance_name }}" type="application/opensearchdescription+xml" rel="search" href="{{ opensearch_url }}"/>
   {% endblock %}
   <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" sizes="any">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/override.css') }}" type="text/css" media="screen" />
 </head>
-	<script>
-		window.onload = function(){
-			if (window.location.pathname == "/"){
-				document.body.style.backgroundImage ="url(../../static/themes/simple/img/searchPageBackground.png)";
-			} else {
-				document.body.style.background = "white";
-			}
-		}
-	</script>
+   <script>
+     window.onload = function(){
+       if (window.location.pathname == "/") {
+         if (screen.width > 500) {
+           document.body.style.backgroundImage ="url(../../static/themes/simple/img/searchPageBackground.png)";
+           document.getElementById("VGILogo").style.visibility="hidden";
+         } else {
+           document.body.style.backgroundImage ="url(../../static/themes/simple/img/mobileSearchPageBackground.png)";
+           document.getElementById("VGILogo").style.display="flex";
+           document.getElementById("VGILogo").style.top="8rem";
+           document.getElementById("VGILogo").style.position="absolute";
+           document.getElementById("q").placeholder="";
+         }
+       } else {
+         document.body.style.background = "white";
+       }
+     }
+   </script>
 <body id="baseBackground" class="{{ endpoint }}_endpoint" style="background-position: center; height: 100vh; background-size: 100% 100%;">
-  <main id="main_{{  self._TemplateReference__context.name|replace("simple/", "")|replace(".html", "") }}" class="{{body_class}}">
+  <main id="main_{{  self._TemplateReference__context.name|replace("simple/", "")|replace(".html", "") }}" class="{{body_class}}" style="position: relative;">
     {% if errors %}
         <div class="dialog-error" role="alert">
             <a href="#" class="close" aria-label="close" title="close">×</a>
@@ -64,8 +75,8 @@
     </nav>
     {% block header %}
     {% endblock %}
-    <div style="display:flex; flex-direction:column; justify-content: center; align-items:center"> 
-      <img src="../../static/themes/simple/img/VGILogo.png" alt="VGI Logo" style="height:auto; width:30rem; position: relative; margin-top: -20rem; margin-bottom: -16rem">
+    <div id="VGILogo" style="display: none; justify-content: center; align-items:center"> 
+      <img src="../../static/themes/simple/img/VGILogo.png" alt="VGI Logo" style="height:auto; width:95vw; position: relative">
     </div>
     {% block content %}
     {% endblock %}
