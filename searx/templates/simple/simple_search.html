@@ -1,9 +1,9 @@
-<form id="search" method="{{ method or 'POST' }}" action="{{ url_for('search') }}" role="search">
-  <div id="search_header">
-    <div id="search_view" style="display: flex; justify-content: end; margin-right: 5rem; margin-top: 25rem">
-      <div class="search_box" style="width: 75rem; height: 6rem">
-        <input id="q" name="q" style="border-radius: 20rem; margin-right: -8rem; font-size: 24px" type="text" placeholder="{{ _('What is the best private search engine online?') }}" autocomplete="off" autocapitalize="none" spellcheck="false" autocorrect="off" dir="auto" value="{{ q or '' }}">
-        <button id="clear_search" type="reset" aria-label="{{ _('clear') }}"><span class="hide_if_nojs">{{ icon_big('close') }}</span><span class="show_if_nojs">{{ _('clear') }}</span></button>
+<form id="search" style="position: absolute; top: 0; left: 0;" method="{{ method or 'POST' }}" action="{{ url_for('search') }}" role="search">
+  <div class="search_header" id="search_header">
+    <div class="search_view" id="search_view" style="display: flex; justify-content: end; width: 100vw">
+      <div class="search_box" style="width: 75rem; height: 6rem; padding: 0rem 1rem;">
+        <input id="q" name="q" style="border-radius: 20rem; margin-right: -9rem; font-size: 24px" type="text" placeholder="{{ _('What is the best private search engine online?') }}" autocomplete="off" autocapitalize="none" spellcheck="false" autocorrect="off" dir="auto" value="{{ q or '' }}">
+        <button id="clear_search" style="margin: 1rem 0.5rem;" type="reset" aria-label="{{ _('clear') }}"><span class="hide_if_nojs">{{ icon_big('close') }}</span><span class="show_if_nojs">{{ _('clear') }}</span></button>
         <button id="send_search" style="border-radius: 5rem; width: 5rem; color: white; background-color: #cc9d1b; margin: .5rem" type="submit" aria-label="{{ _('search') }}"><span class="hide_if_nojs">{{ icon_big('search-outline') }}</span><span class="show_if_nojs">{{ _('search') }}</span></button>
       </div>
     </div>
