@@ -2,6 +2,10 @@
 	box-sizing: border-box;
 }
 
+#main_index {
+	margin-top: 0; !important;
+}
+
 #main_index .search_view {
 	display: flex;
 	justify-content: end;
@@ -84,8 +88,6 @@
 
 @media screen and (min-width: 501px) {
 	#main_index #search_view {
-		margin-right: 5rem;
-		margin-top:25rem;
 	}
 
 	#main_index #search_view:focus-within {
@@ -97,8 +99,10 @@
 	}
 
 	#main_index .search_box {
-		/* margin-top: 9rem;*/
+		margin-top: 37rem;
 		margin-right: 4rem;
+		position:absolute;
+		right:0;
 	}
 }
 
